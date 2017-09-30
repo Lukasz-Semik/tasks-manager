@@ -15,14 +15,25 @@ class App extends Component {
   }
 
   addTask(title){
-    const date = new Date().toDateString();
-    const newTask = [{
-      title, date
-    }]
+    const tasksCheckerArray=this.state.tasks.map((task)=>{
+      return task.title;
+    })
+    if(tasksCheckerArray.indexOf(title) === -1 && title !== ''){
+      const date = new Date().toDateString();
+      const newTask = [{
+        title, date
+      }]
 
-    this.setState((prevState)=>({
-      tasks: [...prevState.tasks, ...newTask]
-    }));
+      this.setState((prevState)=>({
+        tasks: [...prevState.tasks, ...newTask], didRemoveAll: false
+      }));
+
+      return 'ok';
+    }else if(title === ''){
+      return 'empty';
+    }else if(tasksCheckerArray.indexOf(title) > -1){
+      return 'exists';
+    }
   }
 
   removeTask(taskTitle){
@@ -30,13 +41,13 @@ class App extends Component {
       return task.title !== taskTitle;
     })
     this.setState(()=>({
-      tasks
+      tasks, didRemoveAll: false
     }));
   }
 
   removeAll(){
     this.setState(()=>({
-      tasks: []
+      tasks: [], didRemoveAll: true
     }));
   }
 
@@ -45,7 +56,7 @@ class App extends Component {
     return(
       <div>
         <Header />
-        <TaskCreator addTask={this.addTask.bind(this)}/>
+        <TaskCreator addTask={this.addTask.bind(this)} tasks={this.state.tasks} didRemoveAll={this.state.didRemoveAll}/>
         <TasksDisplay tasks={this.state.tasks} removeTask={this.removeTask.bind(this)} removeAll={this.removeAll.bind(this)}/>
       </div>
     );
