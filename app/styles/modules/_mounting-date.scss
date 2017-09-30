@@ -1,0 +1,9 @@
+.mounting-date{
+  position: absolute;
+  top: 0;
+  right: 5%;
+  font-size: 0.9rem;
+  @media (min-width: 570px){
+    font-size: 1.6rem;
+  }
+}

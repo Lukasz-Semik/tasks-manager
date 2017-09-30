@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const Header = () => {
   return (
     <div>
-      Header
+      <h1 className="header">Tasks Manager</h1>
     </div>
   );
 }

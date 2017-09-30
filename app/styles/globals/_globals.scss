@@ -3,5 +3,7 @@ body{
    background: -webkit-linear-gradient(to bottom, #fc4a1a, #f7b733);
    background: linear-gradient(to bottom, #fc4a1a, #f7b733);
    background-repeat: no-repeat;
-   height: 100vh;
+   min-height: 100vh;
+   width: 100%;
+   font-family: 'Indie Flower', cursive;
 }

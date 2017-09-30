@@ -1,0 +1,21 @@
+.btn{
+  background: none;
+  border: none;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2rem;
+  &--s{
+    font-size: 1.6rem;
+    @media (min-width: 1010px){
+      font-size: 2rem;
+    }
+  }
+  &--remove-all{
+    font-size: 1.4rem;
+  }
+  @media (min-width: 570px){
+    font-size: 3rem;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}

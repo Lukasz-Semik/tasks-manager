@@ -11,16 +11,18 @@ class App extends Component {
 
     this.state ={
       tasks: [],
-      didRemoveAll: false
+      didRemoveAll: false,
+      mountingDate: ''
     }
   }
 
   componentDidMount(){
+    const mountingDate = new Date().toDateString();
     try {
       const tasksData = localStorage.getItem('tasks');
       const tasks = JSON.parse(tasksData);
       if(tasks){
-        this.setState(()=>({tasks}));
+        this.setState(()=>({tasks, mountingDate}));
       }
     } catch (e){
       //do nothing
@@ -32,6 +34,7 @@ class App extends Component {
       const tasksData = JSON.stringify(this.state.tasks);
       localStorage.setItem('tasks', tasksData);
     }
+
   }
 
   addTask(title){
@@ -74,7 +77,8 @@ class App extends Component {
   render(){
     console.log('App state: ', this.state);
     return(
-      <div>
+      <div className="wrapper">
+        <div className="mounting-date">{this.state.mountingDate}</div>
         <Header />
         <TaskCreator addTask={this.addTask.bind(this)} tasks={this.state.tasks} didRemoveAll={this.state.didRemoveAll}/>
         <TasksDisplay tasks={this.state.tasks} removeTask={this.removeTask.bind(this)} removeAll={this.removeAll.bind(this)}/>
