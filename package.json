@@ -2,7 +2,7 @@
   "name": "tasks-manager",
   "version": "1.0.0",
   "description": "To do list mini project",
-  "main": "app.js",
+  "main": "index.js",
   "repository": "https://github.com/Lukasz-Semik/tasks-manager.git",
   "author": "Lukasz Semik",
   "license": "MIT",
