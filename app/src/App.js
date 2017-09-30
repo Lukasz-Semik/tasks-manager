@@ -10,7 +10,27 @@ class App extends Component {
     super();
 
     this.state ={
-      tasks: []
+      tasks: [],
+      didRemoveAll: false
+    }
+  }
+
+  componentDidMount(){
+    try {
+      const tasksData = localStorage.getItem('tasks');
+      const tasks = JSON.parse(tasksData);
+      if(tasks){
+        this.setState(()=>({tasks}));
+      }
+    } catch (e){
+      //do nothing
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.tasks.length !== this.state.tasks.length){
+      const tasksData = JSON.stringify(this.state.tasks);
+      localStorage.setItem('tasks', tasksData);
     }
   }
 
