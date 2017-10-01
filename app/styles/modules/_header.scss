@@ -18,17 +18,22 @@
 @keyframes header-animation {
   0%{
     color: black;
+    border-bottom-color: black;
   }
   20%{
     color: #014946;
+    border-bottom-color: #014946;
   }
   40%{
     color: #01460a;
+    border-bottom-color: #01460a;
   }
   60%{
     color: #380080;
+    border-bottom-color: #380080;
   }
   80%{
     color: #012fba;
+    border-bottom-color: #012fba;
   }
 }

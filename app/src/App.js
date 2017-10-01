@@ -13,7 +13,8 @@ class App extends Component {
     this.state ={
       tasks: [],
       didRemoveAll: false,
-      mountingDate: ''
+      mountingDate: '',
+      controlTasksStatus: true
     }
   }
 
@@ -32,8 +33,10 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(prevState.tasks.length !== this.state.tasks.length){
+    if((prevState.tasks.length !== this.state.tasks.length) ||
+      (prevState.controlTasksStatus !== this.state.controlTasksStatus)){
       const tasksData = JSON.stringify(this.state.tasks);
+      console.log(tasksData)
       localStorage.setItem('tasks', tasksData);
     }
 
@@ -43,10 +46,11 @@ class App extends Component {
     const tasksCheckerArray=this.state.tasks.map((task)=>{
       return task.title;
     })
+    const isDone = false;
     if(tasksCheckerArray.indexOf(title) === -1 && title !== ''){
       const date = moment().format('MMM, Do-YYYY');
       const newTask = [{
-        title, date
+        title, date, isDone
       }]
 
       this.setState((prevState)=>({
@@ -70,6 +74,19 @@ class App extends Component {
     }));
   }
 
+  changeTaskStatus(taskTitle){
+    const tasks = this.state.tasks.map((task)=>{
+      if(task.title===taskTitle){
+        task.isDone = !task.isDone;
+      }
+      return task;
+    })
+    const controlTasksStatus = !this.state.controlTasksStatus;
+    this.setState(()=>({
+      tasks, didRemoveAll: false, controlTasksStatus
+    }))
+  }
+
   removeAll(){
     this.setState(()=>({
       tasks: [], didRemoveAll: true
@@ -82,8 +99,15 @@ class App extends Component {
       <div className="wrapper">
         <div className="mounting-date">{this.state.mountingDate}</div>
         <Header />
-        <TaskCreator addTask={this.addTask.bind(this)} tasks={this.state.tasks} didRemoveAll={this.state.didRemoveAll}/>
-        <TasksDisplay tasks={this.state.tasks} removeTask={this.removeTask.bind(this)} removeAll={this.removeAll.bind(this)}/>
+        <TaskCreator addTask={this.addTask.bind(this)}
+          tasks={this.state.tasks}
+          didRemoveAll={this.state.didRemoveAll}
+        />
+        <TasksDisplay tasks={this.state.tasks}
+          removeTask={this.removeTask.bind(this)}
+          changeTaskStatus={this.changeTaskStatus.bind(this)}
+          removeAll={this.removeAll.bind(this)}
+        />
       </div>
     );
   }
