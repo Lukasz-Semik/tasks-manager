@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import Header from './components/Header';
 import TaskCreator from './components/TaskCreator';
@@ -17,7 +18,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    const mountingDate = new Date().toDateString();
+    // const mountingDate = new Date().toDateString();
+    const mountingDate = moment().format('MMM, Do-YYYY');
     try {
       const tasksData = localStorage.getItem('tasks');
       const tasks = JSON.parse(tasksData);
@@ -42,7 +44,7 @@ class App extends Component {
       return task.title;
     })
     if(tasksCheckerArray.indexOf(title) === -1 && title !== ''){
-      const date = new Date().toDateString();
+      const date = moment().format('MMM, Do-YYYY');
       const newTask = [{
         title, date
       }]

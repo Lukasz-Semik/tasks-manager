@@ -4,6 +4,7 @@
   font-family: 'Indie Flower', cursive;
   font-size: 2rem;
   &--s{
+    color: #333;
     font-size: 1.6rem;
     @media (min-width: 1010px){
       font-size: 2rem;
@@ -17,5 +18,8 @@
   }
   &:hover{
     cursor: pointer;
+  }
+  i{
+    margin-top: 25%;
   }
 }
