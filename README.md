@@ -1,7 +1,7 @@
 # tasks-manager
-Simple tasks manager project written in react with redux.
+Simple tasks manager project written in React.js
 ## Online version:
-http://memory-color-game.herokuapp.com/
+http://tasks-manager-react.herokuapp.com/
 ### For development:
 1.Clone this repo <br/>
 2.cd tasks-manager <br/>
