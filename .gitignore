@@ -19,3 +19,8 @@ yarn-debug.log*
 yarn-error.log*
 
 *.txt
+
+public/bundle.js
+public/bundle.js.map
+public/main.css
+public/main.css.map
