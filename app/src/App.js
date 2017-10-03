@@ -9,18 +9,18 @@ import TasksDisplay from './components/TasksDisplay';
 class App extends Component {
   constructor(){
     super();
-    const mountingDate = moment().format('MMM, Do-YYYY');
+
     this.state ={
       tasks: [],
       didRemoveAll: false,
-      mountingDate: mountingDate,
+      mountingDate: '',
       controlTasksStatus: true
     }
   }
 
   componentDidMount(){
     // const mountingDate = new Date().toDateString();
-    // const mountingDate = moment().format('MMM, Do-YYYY');
+    const mountingDate = moment().format('MMM, Do-YYYY');
     try {
       const tasksData = localStorage.getItem('tasks');
       const tasks = JSON.parse(tasksData);
@@ -93,6 +93,7 @@ class App extends Component {
   }
 
   render(){
+
     return(
       <div className="wrapper">
         <div className="mounting-date">{this.state.mountingDate}</div>
