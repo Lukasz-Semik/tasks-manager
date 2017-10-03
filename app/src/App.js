@@ -36,7 +36,6 @@ class App extends Component {
     if((prevState.tasks.length !== this.state.tasks.length) ||
       (prevState.controlTasksStatus !== this.state.controlTasksStatus)){
       const tasksData = JSON.stringify(this.state.tasks);
-      console.log(tasksData)
       localStorage.setItem('tasks', tasksData);
     }
 
@@ -94,7 +93,6 @@ class App extends Component {
   }
 
   render(){
-    console.log('App state: ', this.state);
     return(
       <div className="wrapper">
         <div className="mounting-date">{this.state.mountingDate}</div>
